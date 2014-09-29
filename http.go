@@ -1,11 +1,8 @@
 package sources
 
 import "fmt"
-import "io"
-import "io/ioutil"
 import "net/http"
 import "net/url"
-import "strings"
 import "github.com/gozips/filepath"
 
 // HTTP returns a ReadCloser from an http source
@@ -23,12 +20,4 @@ func HTTP(urlStr string) (string, interface{}) {
 	}
 
 	return name, resp.Body
-}
-
-func errReadCloser(err error) (r io.ReadCloser) {
-	if err != nil {
-		r = ioutil.NopCloser(strings.NewReader(err.Error()))
-	}
-
-	return
 }
