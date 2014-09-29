@@ -1,6 +1,5 @@
 package sources
 
-import "fmt"
 import "net/http"
 import "net/url"
 import "github.com/gozips/filepath"
@@ -9,14 +8,16 @@ import "github.com/gozips/filepath"
 func HTTP(urlStr string) (string, interface{}) {
 	u, err := url.ParseRequestURI(urlStr)
 	if err != nil {
-		return fmt.Sprintf("%s.txt", urlStr), errReadCloser(err)
+		return Errorize(urlStr, err)
 	}
 
 	name := filepath.Base(u)
-	req := &http.Request{Method: "GET", URL: u}
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := http.DefaultClient.Do(&http.Request{
+		Method: "GET",
+		URL:    u,
+	})
 	if err != nil {
-		return fmt.Sprintf("%s.txt", name), errReadCloser(err)
+		return Errorize(name, err)
 	}
 
 	return name, resp.Body
