@@ -1,4 +1,4 @@
-package sources
+package source
 
 import "net/http"
 import "net/url"

@@ -1,4 +1,4 @@
-package sources
+package source
 
 import "os"
 import "github.com/gozips/filepath"
