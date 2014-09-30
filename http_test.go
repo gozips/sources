@@ -26,13 +26,15 @@ func TestHTTPClientError(t *testing.T) {
 	// fails if ISP picks up and redirects to search, which TWC does
 	name, v, err := HTTP("http://unreachable")
 	assert.Equal(t, "unreachable.txt", name)
-	assert.Equal(t, reg.String(), err.Error())
+	if !reg.MatchString(err.Error()) {
+		t.Errorf("Expected %s to match %s", err.Error(), reg.String())
+	}
 
 	b := make([]byte, 32*1024)
 	r := v.(io.ReadCloser)
 	n, _ := r.Read(b)
 	if str := string(b[:n]); !reg.MatchString(str) {
-		t.Errorf("Expected %s, got %s", reg.String(), str)
+		t.Errorf("Expected %s to match %s", str, reg.String())
 	}
 
 	r.Close()
