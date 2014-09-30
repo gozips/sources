@@ -1,4 +1,4 @@
-package source
+package sources
 
 import "io"
 import "regexp"
@@ -6,7 +6,7 @@ import "testing"
 import "github.com/nowk/assert"
 
 func TestHTTPURLParseError(t *testing.T) {
-	name, v := HTTP("thisisabadurl")
+	name, v, _ := HTTP("thisisabadurl")
 	assert.Equal(t, "thisisabadurl.txt", name)
 
 	b := make([]byte, 32*1024)
@@ -19,7 +19,7 @@ func TestHTTPURLParseError(t *testing.T) {
 
 func TestHTTPClientError(t *testing.T) {
 	// fails if ISP picks up and redirects to search, which TWC does
-	name, v := HTTP("http://unreachable")
+	name, v, _ := HTTP("http://unreachable")
 	assert.Equal(t, "unreachable.txt", name)
 
 	reg := regexp.MustCompile(`Get http:\/\/unreachable:( dial tcp:)? lookup unreachable: no such host`)

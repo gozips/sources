@@ -1,9 +1,9 @@
-# source
+# sources
 
-[![Build Status](https://travis-ci.org/gozips/source.svg?branch=master)](https://travis-ci.org/gozips/source)
-[![GoDoc](https://godoc.org/github.com/gozips/source?status.svg)](http://godoc.org/github.com/gozips/source)
+[![Build Status](https://travis-ci.org/gozips/sources.svg?branch=master)](https://travis-ci.org/gozips/sources)
+[![GoDoc](https://godoc.org/github.com/gozips/sources?status.svg)](http://godoc.org/github.com/gozips/sources)
 
-`HTTP` and `FS` source functions for [gozips](https://github.com/gozips)
+`HTTP` and `FS` sources functions for [gozips](https://github.com/gozips)
 
 ## License
 
